@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { useFonts } from 'expo-font';
 
 import sunny from './assets/images/sunny.jpg';
@@ -24,8 +24,18 @@ export default function App() {
   }
   
   return (
-    <View style={styles.container}>
-      {/* <Image source={sunny} style={styles.image} /> */}
+    <ScrollView style={styles.container}>
+      <Text style={styles.locale}>Huntington, WV</Text>
+      <View>
+        <Image source={sunny} style={styles.image} />
+      </View>
+       
+      <Icon name="wi-night-alt-snow" style={styles.icon} />
+
+      <CurrentConditions current={data.current} />
+      <Icon name="wi-night-alt-snow" style={styles.icon} />
+
+      <CurrentConditions current={data.current} />
       <Icon name="wi-night-alt-snow" style={styles.icon} />
 
       <CurrentConditions current={data.current} />
@@ -37,7 +47,7 @@ export default function App() {
 
 
       <StatusBar style="auto" />
-    </View>
+    </ScrollView>
   );
 }
 
@@ -45,12 +55,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
+    //alignItems: 'center',
+    //justifyContent: 'flex-start',
+  },
+  locale: {
+    fontSize: 24,
+    color: '#fff',
+    alignSelf: 'flex-start',
+    marginTop: 30,
+    marginBottom: 6
   },
   image: {
     width: '100%',
-    resizeMode: 'contain',
+    borderRadius: 20,
+    height: undefined,
+    aspectRatio: 1,
+    resizeMode: 'cover',
   },
   icon: {
     fontSize: 80,
